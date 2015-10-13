@@ -58,7 +58,6 @@
 		<attribute name="failerror" default="false" />
 		<element name="args" optional="true" />
 		<sequential>
-			<echo message="git dir @{dir}" />
 			<echo message="git @{command}" />
 			<exec executable="git" dir="@{dir}" failonerror="@{failerror}">
 				<arg line="@{command} @{options}" />
@@ -69,7 +68,7 @@
 		
 	<macrodef name="git-pull">
 		<attribute name="remote" />
-		<attribute name="branch" />
+		<attribute name="branchOrTag" />
 		<attribute name="dir" default=""/>
 		<attribute name="options" default="" />
 		<attribute name="failerror" default="false" />
@@ -77,14 +76,30 @@
 			<git command="pull" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{remote}" />
-					<arg value="@{branch}" />
+					<arg value="@{branchOrTag}" />
 				</args>
 			</git>
 		</sequential>
 	</macrodef>
 	
-	<target name="testPull">
-		<git-pull remote="origin" dir="src" branch="master"/>
+	<macrodef name="git-tag">
+		<sequential>
+			<git command="tag">
+			</git>
+		</sequential>
+	</macrodef>
+	
+	<target name="gitShowTags">
+		<git-tag/>
+	</target>
+	
+	<target name="gitPullmaster">
+		<git-pull remote="origin" dir="src" branchOrTag="master"/>
+	</target>
+	
+	<target name="gitPullTag">
+		<input message="Please enter tag name" addproperty="tagName" />
+		<git-pull remote="origin" dir="src" branchOrTag="${tagName}"/>
 	</target>
 	
 	<!-- Example targets -->
