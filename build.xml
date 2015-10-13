@@ -68,7 +68,7 @@
 		
 	<macrodef name="git-pull">
 		<attribute name="remote" />
-		<attribute name="branchOrTag" />
+		<attribute name="branch" />
 		<attribute name="dir" default=""/>
 		<attribute name="options" default="" />
 		<attribute name="failerror" default="false" />
@@ -76,6 +76,17 @@
 			<git command="pull" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{remote}" />
+					<arg value="@{branch}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="git-checkout">
+		<attribute name="branchOrTag" />
+		<sequential>
+			<git command="checkout">
+				<args>
 					<arg value="@{branchOrTag}" />
 				</args>
 			</git>
@@ -94,12 +105,12 @@
 	</target>
 	
 	<target name="pullMaster">
-		<git-pull remote="origin" dir="src" branchOrTag="master"/>
+		<git-pull remote="origin" dir="src" branch="master"/>
 	</target>
 	
-	<target name="pullTag">
+	<target name="checkoutTag">
 		<input message="Please enter tag name" addproperty="tagName" />
-		<git-pull remote="origin" dir="src" branchOrTag="${tagName}"/>
+		<git-checkout branchOrTag="${tagName}"/>
 	</target>
 	
 	<!-- Example targets -->
