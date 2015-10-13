@@ -89,15 +89,15 @@
 		</sequential>
 	</macrodef>
 	
-	<target name="gitShowTags">
+	<target name="showTags">
 		<git-tag/>
 	</target>
 	
-	<target name="gitPullmaster">
+	<target name="pullMaster">
 		<git-pull remote="origin" dir="src" branchOrTag="master"/>
 	</target>
 	
-	<target name="gitPullTag">
+	<target name="pullTag">
 		<input message="Please enter tag name" addproperty="tagName" />
 		<git-pull remote="origin" dir="src" branchOrTag="${tagName}"/>
 	</target>
