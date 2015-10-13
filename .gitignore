@@ -1,0 +1,7 @@
+build.properties
+build.xml
+.project
+src/package.xml
+
+# OSX Cruft
+.DS_STORE
