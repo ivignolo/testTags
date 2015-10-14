@@ -1,1 +1,6 @@
-<apex:page action="{!URLFOR('/answers/answersHome.apexp')}"/>
+<apex:page showHeader="false" title="Test">
+	<apex:outputText value="Test 1"/>
+    <br/>
+    <br/>
+    <apex:outputText value="Test 2"/>
+</apex:page>
