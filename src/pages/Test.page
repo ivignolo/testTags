@@ -3,4 +3,7 @@
     <br/>
     <br/>
     <apex:outputText value="Test 2"/>
+	<br/>
+    <br/>
+    <apex:outputText value="Test 3"/>
 </apex:page>
